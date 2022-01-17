@@ -1,10 +1,13 @@
 <?php
-
-
 $mysqlsunucu = "localhost";
 $mysqlkullanici = "root";
 $mysqlsifre = "";
 $mysqldb="hospital";
+// $mysqlsunucu = "213.128.75.146"; 
+// $mysqlkullanici = "emregurb_admin"; 
+// $mysqldb="emregurb_hospital"; 
+// $mysqlsifre = "hospitaladmin123*";
+
 try {
     $conn = new PDO("mysql:host=$mysqlsunucu;dbname=$mysqldb;charset=utf8", $mysqlkullanici, $mysqlsifre);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
