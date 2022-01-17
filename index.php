@@ -14,7 +14,7 @@
 
 </head>
 
-<body>
+<body class="body">
 
     <form method="POST" action.="./index.php" class="login">
         <input name="username" type="text" placeholder="Username">
