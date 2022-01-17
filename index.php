@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="./main.css">
     <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
     <script src="./main.js"></script>
-
-
-
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 </head>
 
 <body class="body">

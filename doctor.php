@@ -9,20 +9,65 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo @$_SESSION['role'] == 0 ? "Doctor's Panel":"Nurse's Panel";?></title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="doctor.css">
+    <link href='https://fonts.googleapis.com/css?family=Quantico' rel='stylesheet' type='text/css'>
+    <script src='https://cdn.plot.ly/plotly-2.8.3.min.js'></script>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+
 </head>
 
 <body>
-    <div class="main-graph home__data">
+    <div class="main-graph">
         <canvas class="graph" id="myChart"></canvas>
         <canvas class="graph" id="myChart2"></canvas>
         <canvas class="graph" id="myChart3"></canvas>
+    </div>
+
+    <div class="controls">
+
+        <div class="fever-controls">
+            <form action="/action_page.php">
+                <label for="vol">Ateş Uyarısı:</label>
+                <div class="slider">
+                    <input type="range" min="20" max="50" onchange="rangevalue.value=value" />
+                    <output id="rangevalue">35</output>
+                    <input type="range" min="20" max="50" onchange="rangevalue.value=value" />
+                    <output id="rangevalue">35</output>
+                </div>
+                <input class="submit-type fever-color" type="submit">
+            </form>
+        </div>
+
+        <div class="room-temperature">
+            <form action="/action_page.php">
+                <label for="vol">Oda Sıcaklıgı Uyarısı:</label>
+                <div class="slider">
+                    <input type="range" min="-25" max="50" onchange="rangevalue.value=value" />
+                    <output id="rangevalue">12</output>
+                    <input type="range" min="-25" max="50" onchange="rangevalue.value=value" />
+                    <output id="rangevalue">12</output>
+                </div>
+                <input class="submit-type room-color" type="submit">
+            </form>
+        </div>
+
+        <div class="pulse-controls">
+            <form action="/action_page.php">
+                <label for="vol">Nabız Uyarısı:</label>
+                <div class="slider">
+                    <input type="range" min="0" max="250" onchange="rangevalue.value=value" />
+                    <output id="rangevalue">125</output>
+                    <input type="range" min="0" max="250" onchange="rangevalue.value=value" />
+                    <output id="rangevalue">125</output>
+                </div>
+                <input class="submit-type pulse-color" type="submit">
+            </form>
+        </div>
     </div>
 
     <script>
@@ -96,6 +141,12 @@
         config3
     );
     </script>
+
+    <div id='myDiv'>
+        <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+
+    <script src="./main.js"></script>
 </body>
 
 </html>
