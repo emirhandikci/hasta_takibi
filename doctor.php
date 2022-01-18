@@ -16,57 +16,47 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="doctor.css">
     <link href='https://fonts.googleapis.com/css?family=Quantico' rel='stylesheet' type='text/css'>
-    <script src='https://cdn.plot.ly/plotly-2.8.3.min.js'></script>
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <script src="\node_modules\plotly.js-dist\plotly.js"></script>
+    <script src="./graphs.js"></script>
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
 
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 </head>
 
 <body>
+
     <div class="main-graph">
-        <canvas class="graph" id="myChart"></canvas>
-        <canvas class="graph" id="myChart2"></canvas>
-        <canvas class="graph" id="myChart3"></canvas>
+        <div id="chartContainer" style="height: 450px; width:450px;"></div>
+        <div id="chartContainer2" style="height: 450px; width:450px;"></div>
+        <div id="chartContainer3" style="height: 450px; width:450px;"></div>
+        <!-- <canvas class="graph" id="myChart2"></canvas>
+        <canvas class="graph" id="myChart3"></canvas> -->
     </div>
 
     <div class="controls">
 
         <div class="fever-controls">
-            <form action="/action_page.php">
-                <label for="vol">Ateş Uyarısı:</label>
-                <div class="slider">
-                    <input type="range" min="20" max="50" onchange="rangevalue.value=value" />
-                    <output id="rangevalue">35</output>
-                    <input type="range" min="20" max="50" onchange="rangevalue.value=value" />
-                    <output id="rangevalue">35</output>
-                </div>
-                <input class="submit-type fever-color" type="submit">
-            </form>
+            <h4>Ateş Alarmı</h4>
+            <input data-role="doubleslider" data-value-min="20" data-value-max="80" data-hint-always="true"
+                data-hint-position-min="bottom" data-hint-position-max="top" data-show-min-max="false"
+                data-cls-backside="bg-dark" data-cls-marker="bg-blue border-50 custom-marker"
+                data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-red" data-cls-min-max="text-bold">
         </div>
 
         <div class="room-temperature">
-            <form action="/action_page.php">
-                <label for="vol">Oda Sıcaklıgı Uyarısı:</label>
-                <div class="slider">
-                    <input type="range" min="-25" max="50" onchange="rangevalue.value=value" />
-                    <output id="rangevalue">12</output>
-                    <input type="range" min="-25" max="50" onchange="rangevalue.value=value" />
-                    <output id="rangevalue">12</output>
-                </div>
-                <input class="submit-type room-color" type="submit">
-            </form>
+            <h4>Ateş Alarmı</h4>
+            <input id="room-data" data-role="doubleslider" data-value-min="20" data-value-max="80"
+                data-hint-always="true" data-hint-position-min="bottom" data-hint-position-max="top"
+                data-show-min-max="false" data-cls-backside="bg-dark" data-cls-marker="bg-blue border-50 custom-marker"
+                data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-red" data-cls-min-max="text-bold">
         </div>
 
         <div class="pulse-controls">
-            <form action="/action_page.php">
-                <label for="vol">Nabız Uyarısı:</label>
-                <div class="slider">
-                    <input type="range" min="0" max="250" onchange="rangevalue.value=value" />
-                    <output id="rangevalue">125</output>
-                    <input type="range" min="0" max="250" onchange="rangevalue.value=value" />
-                    <output id="rangevalue">125</output>
-                </div>
-                <input class="submit-type pulse-color" type="submit">
-            </form>
+            <h4>Ateş Alarmı</h4>
+            <input data-role="doubleslider" data-value-min="20" data-value-max="80" data-hint-always="true"
+                data-hint-position-min="bottom" data-hint-position-max="top" data-show-min-max="false"
+                data-cls-backside="bg-dark" data-cls-marker="bg-blue border-50 custom-marker"
+                data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-red" data-cls-min-max="text-bold">
         </div>
     </div>
 
@@ -142,10 +132,9 @@
     );
     </script>
 
-    <div id='myDiv'>
-        <!-- Plotly chart will be drawn inside this DIV -->
-    </div>
 
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
     <script src="./main.js"></script>
 </body>
 

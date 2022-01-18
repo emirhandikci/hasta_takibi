@@ -1,11 +1,13 @@
 <?php
+
 $mysqlsunucu = "localhost";
 $mysqlkullanici = "root";
 $mysqlsifre = "";
 $mysqldb="hospital";
+
 // $mysqlsunucu = "213.128.75.146"; 
-// $mysqlkullanici = "emregurb_admin"; 
-// $mysqldb="emregurb_hospital"; 
+// $mysqlkullanici = "emregurb_admin";
+// $mysqldb="emregurb_hospital";
 // $mysqlsifre = "hospitaladmin123*";
 
 try {
