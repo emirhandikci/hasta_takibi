@@ -1,45 +1,70 @@
-window.onload = function () {
-
-    var dps = []; // dataPoints
-    var chart = new CanvasJS.Chart("chartContainer", {
-        title: {
-            text: "Fever"
-        },
-        data: [{
-            type: "line",
-            dataPoints: dps
-        }]
-    });
-
-
-    var xVal = 0;
-    var yVal = 100;
-    var updateInterval = 1000;
-    var dataLength = 200; // number of dataPoints visible at any point
-
-    var updateChart = function (count) {
-
-        count = count || 1;
-
-        for (var j = 0; j < count; j++) {
-            yVal = yVal + Math.round(5 + Math.random() * (-5 - 5));
-            dps.push({
-                x: xVal,
-                y: yVal
-            });
-            xVal++;
-        }
-
-        if (dps.length > dataLength) {
-            dps.shift();
-        }
-
-        chart.render();
-    };
-
-    updateChart(dataLength);
-    setInterval(function () {
-        updateChart()
-    }, updateInterval);
-
+function rand() {
+    return Math.random();
 }
+
+Plotly.plot('graph', [{
+    y: [1, 2, 3].map(rand),
+    mode: 'lines',
+    line: {
+        color: '#E50914'
+    }
+}]);
+
+var cnt = 0;
+
+var interval = setInterval(function () {
+
+    Plotly.extendTraces('graph', {
+        y: [
+            [rand()]
+        ]
+    }, [0])
+
+    if (cnt === 100) clearInterval(interval);
+}, 300);
+
+Plotly.plot('graph2', [{
+    y: [1, 2, 3].map(rand),
+    mode: 'lines',
+    line: {
+        color: '#E50914'
+    }
+}]);
+
+var cnt = 0;
+
+var interval = setInterval(function () {
+
+    Plotly.extendTraces('graph2', {
+        y: [
+            [rand()]
+        ]
+    }, [0])
+
+    if (cnt === 100) clearInterval(interval);
+}, 300);
+
+function rand() {
+    return Math.random();
+}
+
+Plotly.plot('graph3', [{
+    y: [1, 2, 3].map(rand),
+    mode: 'lines',
+    line: {
+        color: '#E50914'
+    }
+}]);
+
+var cnt = 0;
+
+var interval = setInterval(function () {
+
+    Plotly.extendTraces('graph3', {
+        y: [
+            [rand()]
+        ]
+    }, [0])
+
+    if (cnt === 100) clearInterval(interval);
+}, 300);

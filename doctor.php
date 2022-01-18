@@ -16,141 +16,79 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="doctor.css">
     <link href='https://fonts.googleapis.com/css?family=Quantico' rel='stylesheet' type='text/css'>
-    <script src="\node_modules\plotly.js-dist\plotly.js"></script>
-    <script src="./graphs.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 </head>
 
 <body>
 
-    <div class="main-graph">
-        <div id="chartContainer" style="height: 450px; width:450px;"></div>
-        <div id="chartContainer2" style="height: 450px; width:450px;"></div>
-        <div id="chartContainer3" style="height: 450px; width:450px;"></div>
-        <!-- <canvas class="graph" id="myChart2"></canvas>
-        <canvas class="graph" id="myChart3"></canvas> -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="graph" id="graph"></div>
+                <div class="fever-controls">
+                    <h4 class="mb-5">Ateş Alarmı °C</h4>
+                    <input class="dual-slider" data-role="doubleslider" data-min="20" data-max="45" data-value-min="32"
+                        data-value-max="38" data-hint-always="true" data-hint-position-min="top"
+                        data-hint-position-max="top" data-show-min-max="false" data-cls-backside="bg-red"
+                        data-cls-marker="bg-blue border-50 custom-marker" data-cls-hint="bg-cyan custom-marker shadow-2"
+                        data-cls-complete="bg-dark" data-cls-min-max="text-bold"
+                        onchange="$('#slider-return-value1').val(this.value)">
+                    <input type="text" id="slider-return-value1">
+                    <button class="button-submit" name="btn-fever">
+                        Sınırla
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="graph" id="graph2"></div>
+                <div class="room-temperature">
+                    <h4 class="mb-5">Küvez Sıcaklık Alarmı °C</h4>
+                    <input id="room-data" class="dual-slider" data-role="doubleslider" data-min="-10" data-max="60"
+                        data-value-min="15" data-value-max="48" data-hint-always="true" data-hint-position-min="top"
+                        data-hint-position-max="top" data-show-min-max="false" data-cls-backside="bg-red"
+                        data-cls-marker="bg-blue border-50 custom-marker" data-cls-hint="bg-cyan custom-marker shadow-2"
+                        data-cls-complete="bg-dark" data-cls-min-max="text-bold"
+                        onchange="$('#slider-return-value2').val(this.value)">
+                    <input type="text" id="slider-return-value2">
+                    <button class="button-submit" name="btn-room">
+                        Sınırla
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="graph" id="graph3"></div>
+                <div class="pulse-controls">
+                    <h4 class="mb-5">Nabız Alarmı</h4>
+                    <input class="dual-slider" data-role="doubleslider" data-min="0" data-max="200" data-value-min="40"
+                        data-value-max="120" data-hint-always="true" data-hint-position-min="top"
+                        data-hint-position-max="top" data-show-min-max="false" data-cls-backside="bg-red"
+                        data-cls-marker="bg-blue border-50 custom-marker" data-cls-hint="bg-cyan custom-marker shadow-2"
+                        data-cls-complete="bg-dark" data-cls-min-max="text-bold"
+                        onchange="$('#slider-return-value3').val(this.value)">
+                    <input type="text" id="slider-return-value3">
+                    <button class="button-submit" name="btn-pulse">
+                        Sınırla
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
     </div>
 
-    <div class="controls">
-
-        <div class="fever-controls">
-            <h4>Ateş Alarmı</h4>
-            <input data-role="doubleslider" data-value-min="20" data-value-max="80" data-hint-always="true"
-                data-hint-position-min="bottom" data-hint-position-max="top" data-show-min-max="false"
-                data-cls-backside="bg-red" data-cls-marker="bg-blue border-50 custom-marker"
-                data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-dark" data-cls-min-max="text-bold"
-                onchange="$('#slider-return-value').val(this.value)">
-            <input type="text" id="slider-return-value">
-            <button name="btn-fever">
-                Sınırla
-            </button>
-        </div>
-
-        <div class="room-temperature">
-            <h4>Ateş Alarmı</h4>
-            <input id="room-data" data-role="doubleslider" data-value-min="20" data-value-max="80"
-                data-hint-always="true" data-hint-position-min="bottom" data-hint-position-max="top"
-                data-show-min-max="false" data-cls-backside="bg-dark" data-cls-marker="bg-blue border-50 custom-marker"
-                data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-red" data-cls-min-max="text-bold"
-                onchange="$('#slider-return-value').val(this.value)">
-            <input type="text" id="slider-return-value">
-            <button name="btn-room">
-                Sınırla
-            </button>
-        </div>
-
-        <div class="pulse-controls">
-            <h4>Ateş Alarmı</h4>
-            <input data-role="doubleslider" data-value-min="20" data-value-max="80" data-hint-always="true"
-                data-hint-position-min="bottom" data-hint-position-max="top" data-show-min-max="false"
-                data-cls-backside="bg-dark" data-cls-marker="bg-blue border-50 custom-marker"
-                data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-red" data-cls-min-max="text-bold"
-                onchange="$('#slider-return-value').val(this.value)">
-            <input type="text" id="slider-return-value">
-            <button name="btn-pulse">
-                Sınırla
-            </button>
-        </div>
-    </div>
-
-    <script>
-    const labels = [
-        '01:00',
-        '02:00',
-        '03:00',
-        '05:00',
-        '06:00',
-        '07:00',
-        '08:00',
-        '09:00',
-        '10:00',
-    ];
-
-    const data = {
-        labels: labels,
-        datasets: [{
-            label: 'Fever',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45, 1, 100],
-        }]
-    };
-    const data2 = {
-        labels: labels,
-        datasets: [{
-            label: 'Room Temperature',
-            backgroundColor: 'rgb(16, 58, 202)',
-            borderColor: 'rgb(16, 58, 202)',
-            data: [30, 35, 25, 28, 29, 31, 38],
-        }]
-    }
-    const data3 = {
-        labels: labels,
-        datasets: [{
-            label: 'Pulse',
-            backgroundColor: 'rgb(36, 161, 156)',
-            borderColor: 'rgb(36, 161, 156)',
-            data: [40, 10, 85, 155, 47, 80, 75],
-        }]
-    }
-    const config = {
-        type: 'line',
-        data: data,
-        options: {}
-    };
-    const config2 = {
-        type: 'line',
-        data: data2,
-        options: {}
-    };
-    const config3 = {
-        type: 'line',
-        data: data3,
-        options: {}
-    };
-    </script>
-
-    <script>
-    const myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-    );
-    const myChart2 = new Chart(
-        document.getElementById('myChart2'),
-        config2
-    );
-    const myChart3 = new Chart(
-        document.getElementById('myChart3'),
-        config3
-    );
-    </script>
-
-
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
     <script src="./main.js"></script>
+    <script src="./graphs.js"></script>
 </body>
 
 </html>
