@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,51 +11,53 @@
     <title>Patient Monitoring</title>
     <link rel="stylesheet" href="./main.css">
     <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
-    <script src="./main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 </head>
 
 <body class="body">
 
-    <form method="POST" action.="./index.php" class="login">
-        <input name="username" type="text" placeholder="Username">
-        <input name="password" type="password" placeholder="Password">
-        <button type="submit">Login</button>
+    <form id="loginForm" class="login">
+        <input id="username" name="username" type="text" placeholder="Username">
+        <input id="password" name="password" type="password" placeholder="Password">
+        <button class="getLogin" type="button">Login</button>
     </form>
 
-    <?php
-        include ("./conn.php"); //Veritabanı Baglantisi
-        session_start();
-
-        if(isset($_POST["username"]) && isset($_POST["password"]))
-        {
-            $password = $_POST['password']; 
-            $username = $_POST['username']; 
-
-            $query = $conn->query("SELECT * FROM user WHERE username = '{$username}' AND password = '{$password}'")->fetch(PDO::FETCH_ASSOC);
-            if ( $query ){
-            $_SESSION["username"]=$query["username"];
-            $_SESSION["role"]=$query["role"];
-            if($query['role'] == 1){
-                header ("location: nurse.php");
-            }
-            else if($query['role'] == 0){
-                header ("location: doctor.php");
-            }
-            else{
-                echo "Böyle bir kullanıcı yoktur!";
-            }
-            }else{
-                echo "Please log in with correct E-username and Password..";
-            }
-        }
-?>
 
     <!-- SCROLL REVEAL -->
     <script src="https://unpkg.com/scrollreveal"></script>
 
     <!-- JAVASCRİPT -->
-    <script src="./main.js"></script>
+    <script>
+    var form = $('#loginForm');
+    $('.getLogin').click(function() {
+        $.ajax({
+            type: "POST",
+            url: "php/loginControl.php",
+            data: form.serialize(),
+            success: function(data) {
+                veri = JSON.parse(data);
+                if (veri["status"] == "success") {
+                    Swal.fire(
+                        veri["title"],
+                        veri["message"],
+                        veri["status"]
+                    )
+                    setTimeout(() => {
+                        window.location.href = "doctor.php";
+                    }, 1000)
+                } else {
+                    Swal.fire(
+                        veri["title"],
+                        veri["message"],
+                        veri["status"]
+                    )
+                }
+            }
+        });
+    })
+    </script>
 </body>
 
 </html>

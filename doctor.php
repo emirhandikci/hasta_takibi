@@ -1,6 +1,7 @@
 <?php 
-    session_start();
-    if($_SESSION['username'] != 0 ){
+        ob_start();
+        session_start();
+    if($_SESSION['role'] != 0 ){
         header("location: index.php");
     }
 ?>
@@ -15,6 +16,8 @@
     <title><?php echo @$_SESSION['role'] == 0 ? "Doctor's Panel":"Nurse's Panel";?></title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="doctor.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href='https://fonts.googleapis.com/css?family=Quantico' rel='stylesheet' type='text/css'>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
@@ -24,10 +27,10 @@
 </head>
 
 <body>
-
     <div class="container">
-
         <div class="row">
+            <form id="doctorForm">
+
             <div class="col-md-6 col-lg-4">
                 <div class="graph" id="graph"></div>
                 <div class="fever-controls">
@@ -37,11 +40,9 @@
                         data-hint-position-max="top" data-show-min-max="false" data-cls-backside="bg-red"
                         data-cls-marker="bg-blue border-50 custom-marker" data-cls-hint="bg-cyan custom-marker shadow-2"
                         data-cls-complete="bg-dark" data-cls-min-max="text-bold"
-                        onchange="$('#slider-return-value1').val(this.value)">
-                    <input type="text" id="slider-return-value1">
-                    <button class="button-submit" name="btn-fever">
-                        Sınırla
-                    </button>
+                        onchange="$('#patientTemp').val(this.value)">
+                    <input name="patientTemp" type="text" id="patientTemp">
+                   
                 </div>
             </div>
 
@@ -54,9 +55,9 @@
                         data-hint-position-max="top" data-show-min-max="false" data-cls-backside="bg-red"
                         data-cls-marker="bg-blue border-50 custom-marker" data-cls-hint="bg-cyan custom-marker shadow-2"
                         data-cls-complete="bg-dark" data-cls-min-max="text-bold"
-                        onchange="$('#slider-return-value2').val(this.value)">
-                    <input type="text" id="slider-return-value2">
-                    <button class="button-submit" name="btn-room">
+                        onchange="$('#roomTemp').val(this.value)">
+                    <input name="roomTemp" type="text" id="roomTemp">
+                    <button class="getLimit button-submit"  type="button" name="btn-room">
                         Sınırla
                     </button>
                 </div>
@@ -71,12 +72,11 @@
                         data-hint-position-max="top" data-show-min-max="false" data-cls-backside="bg-red"
                         data-cls-marker="bg-blue border-50 custom-marker" data-cls-hint="bg-cyan custom-marker shadow-2"
                         data-cls-complete="bg-dark" data-cls-min-max="text-bold"
-                        onchange="$('#slider-return-value3').val(this.value)">
-                    <input type="text" id="slider-return-value3">
-                    <button class="button-submit" name="btn-pulse">
-                        Sınırla
-                    </button>
+                        onchange="$('#pulse').val(this.value)">
+                    <input name="pulse" type="text" id="pulse">
+                    
                 </div>
+                </form>
 
             </div>
         </div>
@@ -89,6 +89,34 @@
     </script>
     <script src="./main.js"></script>
     <script src="./graphs.js"></script>
+    <script>
+    var form = $('#doctorForm');
+    $('.getLimit').click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "php/addLimit.php",
+            data: form.serialize(),
+            success: function(data) {
+                veri = JSON.parse(data);
+                if (veri["status"] == "success") {
+                    Swal.fire(
+                        veri["title"],
+                        veri["message"],
+                        veri["status"]
+                    )
+                   
+                } else {
+                    Swal.fire(
+                        veri["title"],
+                        veri["message"],
+                        veri["status"]
+                    )
+                }
+            }
+        });
+    })
+    </script>
 </body>
 
 </html>
