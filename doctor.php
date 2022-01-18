@@ -39,8 +39,13 @@
             <h4>Ateş Alarmı</h4>
             <input data-role="doubleslider" data-value-min="20" data-value-max="80" data-hint-always="true"
                 data-hint-position-min="bottom" data-hint-position-max="top" data-show-min-max="false"
-                data-cls-backside="bg-dark" data-cls-marker="bg-blue border-50 custom-marker"
-                data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-red" data-cls-min-max="text-bold">
+                data-cls-backside="bg-red" data-cls-marker="bg-blue border-50 custom-marker"
+                data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-dark" data-cls-min-max="text-bold"
+                onchange="$('#slider-return-value').val(this.value)">
+            <input type="text" id="slider-return-value">
+            <button name="btn-fever">
+                Sınırla
+            </button>
         </div>
 
         <div class="room-temperature">
@@ -48,7 +53,12 @@
             <input id="room-data" data-role="doubleslider" data-value-min="20" data-value-max="80"
                 data-hint-always="true" data-hint-position-min="bottom" data-hint-position-max="top"
                 data-show-min-max="false" data-cls-backside="bg-dark" data-cls-marker="bg-blue border-50 custom-marker"
-                data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-red" data-cls-min-max="text-bold">
+                data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-red" data-cls-min-max="text-bold"
+                onchange="$('#slider-return-value').val(this.value)">
+            <input type="text" id="slider-return-value">
+            <button name="btn-room">
+                Sınırla
+            </button>
         </div>
 
         <div class="pulse-controls">
@@ -56,7 +66,12 @@
             <input data-role="doubleslider" data-value-min="20" data-value-max="80" data-hint-always="true"
                 data-hint-position-min="bottom" data-hint-position-max="top" data-show-min-max="false"
                 data-cls-backside="bg-dark" data-cls-marker="bg-blue border-50 custom-marker"
-                data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-red" data-cls-min-max="text-bold">
+                data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-red" data-cls-min-max="text-bold"
+                onchange="$('#slider-return-value').val(this.value)">
+            <input type="text" id="slider-return-value">
+            <button name="btn-pulse">
+                Sınırla
+            </button>
         </div>
     </div>
 
