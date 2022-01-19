@@ -6,7 +6,7 @@ const sr = ScrollReveal({
     reset: true
 });
 
-sr.reveal(`.home__data, .graph, #graph, #graph2, #graph3, .home__img,
+sr.reveal(`.home__data, #graph, #graph2, #graph3, .home__img,
             .about__data, .about__img,
             .services__content, .menu__content,
             .app__data, .app__img,
