@@ -97,7 +97,6 @@
                 </tr>
             </thead>
             <tbody id="myDatatable">
-
             </tbody>
         </table>
     </div>

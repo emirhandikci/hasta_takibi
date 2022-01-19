@@ -9,6 +9,7 @@ function getValue(){
    
       
     var ates,nabiz,sicaklik;
+    var roomTempLower,roomTempUpper,patientTempLower,patientTempUpper,pulseLower,pulseUpper;
     Plotly.plot('graph', [{
         y: [],
         mode: 'lines',
@@ -39,6 +40,12 @@ function getValue(){
                 nabiz=veri.nabiz;
                 ates=veri.ates;
                 sicaklik=veri.sicaklik;
+                roomTempLower=veri.roomTempLower;
+                roomTempUpper=veri.roomTempUpper;
+                patientTempUpper=veri.patientTempUpper;
+                patientTempLower=veri.patientTempLower;
+                pulseLower=veri.pulseLower;
+                pulseUpper=veri.pulseUpper;
             }
         });
         Plotly.extendTraces('graph', {
@@ -56,12 +63,27 @@ function getValue(){
                 [nabiz]
             ]
         }, [0])
-        if(sicaklik>30 || ates>30 || nabiz>30 ){
-            Toast.fire({
-                icon: 'warning',
-                title: `Sıcaklık: ${sicaklik}, Ateş: ${ates} Nabız: ${nabiz}`
-            })
-        }
+            if(ates>patientTempUpper || ates<patientTempLower){
+                Toast.fire({
+                    icon: 'warning',
+                    title: `Ateş: ${ates} Küvez Sıcaklığı: ${sicaklik}, Nabız: ${nabiz}, Kişinin ateşini kontrol ediniz. `,
+                })
+            }
+            if(sicaklik>roomTempUpper || sicaklik<roomTempLower){
+                Toast.fire({
+                    icon: 'warning',
+                    title: `Ateş: ${ates} Küvez Sıcaklığı: ${sicaklik}, Nabız: ${nabiz}, Küvez sıcaklığını kontrol ediniz. `,
+                })
+            }
+            if(nabiz>pulseUpper || nabiz<pulseLower){
+                Toast.fire({
+                    icon: 'warning',
+                    title: `Ateş: ${ates} Küvez Sıcaklığı: ${sicaklik}, Nabız: ${nabiz}, Kişi nabzını kontrol ediniz. `,
+                })
+            }
+            
+            
+        
         
     }, 1000);
 }
