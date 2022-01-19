@@ -3,7 +3,7 @@
 $mysqlsunucu = "localhost";
 $mysqlkullanici = "root";
 $mysqlsifre = "";
-$mysqldb="hospital";
+$mysqldb="patient";
 
 // $mysqlsunucu = "213.128.75.146"; 
 // $mysqlkullanici = "emregurb_admin";

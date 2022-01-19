@@ -46,7 +46,18 @@ session_start();
                     )
                     setTimeout(() => {
                         window.location.href = "doctor.php";
-                    }, 1000)
+                    }, 200)
+
+                } else if (veri["status"] == "success") {
+                    Swal.fire(
+                        veri["title"],
+                        veri["message"],
+                        veri["status"]
+                    )
+                    setTimeout(() => {
+                        window.location.href = "nurse.php";
+                    }, 200)
+
                 } else {
                     Swal.fire(
                         veri["title"],
