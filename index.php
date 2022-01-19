@@ -69,6 +69,11 @@ session_start();
         });
     })
     </script>
+        <!-- SCROLL REVEAL -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- JAVASCRİPT -->
+    <script src="./main.js"></script>
 </body>
 
 </html>
