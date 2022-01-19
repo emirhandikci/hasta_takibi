@@ -13,6 +13,7 @@ if(isset($_POST["username"]) && isset($_POST["password"]))
         $data["status"]="success";        
         $data["title"]="success";        
         $data["message"]="Giriş başarılı";
+        $data["role"]=$query["role"];
         echo json_encode($data);  
     }
     else{

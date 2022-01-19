@@ -41,21 +41,19 @@ session_start();
                         veri["message"],
                         veri["status"]
                     )
-                    setTimeout(() => {
+                    if(veri["role"]==0){
+                        setTimeout(() => {
                         window.location.href = "doctor.php";
                     }, 200)
-
-                } else if (veri["status"] == "success") {
-                    Swal.fire(
-                        veri["title"],
-                        veri["message"],
-                        veri["status"]
-                    )
-                    setTimeout(() => {
+                    }else{
+                        setTimeout(() => {
                         window.location.href = "nurse.php";
                     }, 200)
+                    }
+                    
 
-                } else {
+                } 
+                else {
                     Swal.fire(
                         veri["title"],
                         veri["message"],
