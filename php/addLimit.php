@@ -20,7 +20,7 @@ if(isset($_POST["patientTemp"]) && isset($_POST["pulse"])&& isset($_POST["roomTe
         patientTempLower = ?,
         patientTempUpper = ?");
         $insert = $query->execute(array(
-            $patientTempLimit[0],$patientTempLimit[1],$pulseTempLimit[0],$pulseTempLimit[1],$roomTempLimit[0],$roomTempLimit[1]));
+           $roomTempLimit[0],$roomTempLimit[1], $pulseTempLimit[0],$pulseTempLimit[1],$patientTempLimit[0],$patientTempLimit[1],));
         if ( $insert ){
             $data["status"]="success";        
             $data["title"]="success";        

@@ -4,7 +4,9 @@
     if($_SESSION['role'] != 0 ){
         header("location: index.php");
     }
-   
+    include ('conn.php');
+    $limits = $conn->query("SELECT * FROM limits ORDER BY id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +39,7 @@
                     <div class="fever-controls">
                         <h4 class="mb-5">Ateş Alarmı °C</h4>
                         <input class="dual-slider" data-role="doubleslider" data-min="20" data-max="45"
-                            data-value-min="32" data-value-max="38" data-hint-always="true" data-hint-position-min="top"
+                            data-value-min="<?php echo $limits["patientTempLower"]; ?>" data-value-max="<?php echo $limits["patientTempUpper"]; ?>" data-hint-always="true" data-hint-position-min="top"
                             data-hint-position-max="top" data-show-min-max="false" data-cls-backside="bg-red"
                             data-cls-marker="bg-blue border-50 custom-marker"
                             data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-dark"
@@ -52,7 +54,7 @@
                     <div class="room-temperature">
                         <h4 class="mb-5">Küvez Sıcaklık Alarmı °C</h4>
                         <input id="room-data" class="dual-slider" data-role="doubleslider" data-min="-10" data-max="60"
-                            data-value-min="15" data-value-max="48" data-hint-always="true" data-hint-position-min="top"
+                        data-value-min="<?php echo $limits["roomTempLower"]; ?>" data-value-max="<?php echo $limits["roomTempUpper"]; ?>" data-hint-always="true" data-hint-position-min="top"
                             data-hint-position-max="top" data-show-min-max="false" data-cls-backside="bg-red"
                             data-cls-marker="bg-blue border-50 custom-marker"
                             data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-dark"
@@ -66,7 +68,7 @@
                     <div class="pulse-controls">
                         <h4 class="mb-5">Nabız Alarmı</h4>
                         <input class="dual-slider" data-role="doubleslider" data-min="0" data-max="200"
-                            data-value-min="40" data-value-max="120" data-hint-always="true"
+                        data-value-min="<?php echo $limits["pulseLower"]; ?>" data-value-max="<?php echo $limits["pulseUpper"]; ?>" data-hint-always="true" data-hint-position-min="top"
                             data-hint-position-min="top" data-hint-position-max="top" data-show-min-max="false"
                             data-cls-backside="bg-red" data-cls-marker="bg-blue border-50 custom-marker"
                             data-cls-hint="bg-cyan custom-marker shadow-2" data-cls-complete="bg-dark"
