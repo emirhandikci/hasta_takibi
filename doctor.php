@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 animate__animated animate__shakeX animate__repeat-3">
                     <div class="graph" id="graph2"></div>
                     <div class="room-temperature">
                         <h4 class="mb-5">Küvez Sıcaklık Alarmı °C</h4>
