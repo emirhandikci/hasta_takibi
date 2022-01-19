@@ -32,7 +32,7 @@
     <div class="container">
         <div class="row ">
             <form class="d-flex" id="doctorForm">
-                <div class="col-md-6 col-lg-4 animate__animated animate__flash animate__repeat-3 border border-dark">
+                <div class="col-md-6 col-lg-4 animate__animated animate__flash animate__repeat-3">
                     <div class="graph" id="graph"></div>
                     <div class="fever-controls">
                         <h4 class="mb-5">Ateş Alarmı °C</h4>
