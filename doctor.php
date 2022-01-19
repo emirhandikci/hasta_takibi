@@ -4,6 +4,7 @@
     if($_SESSION['role'] != 0 ){
         header("location: index.php");
     }
+   
 ?>
 
 <!DOCTYPE html>
@@ -81,24 +82,23 @@
             </button>
         </div>
     </div>
-    <div class="container">
-            <table id="example" class="table table-striped" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Tarih</th>
-                        <th>T.C. Kimlik Numarası </th>
-                        <th>Nabız</th>
-                        <th>Ateş</th>
-                        <th>Oda Sıcaklıı</th>
-                    </tr>
-                </thead>
-            </table>
-            <script type="text/javascript">
-            $(document).ready(function() {
-            $('#example').DataTable();
-            } );
-            </script>
-        </div>
+  
+ <div class="container">
+        <table id="example" class="table table-striped" >
+            <thead>
+                <tr>
+                    <th>Oda Sıcaklığı</th>
+                    <th>Nabız</th>
+                    <th>Ateş</th>
+                    <th>TC</th>
+                    <th>Tarih</th>
+                </tr>
+            </thead>
+            <tbody id="myDatatable">
+
+            </tbody>
+        </table>
+    </div>
 
     <script>
     var form = $('#doctorForm');
@@ -140,6 +140,18 @@
             <!--<script src="https://unpkg.com/scrollreveal"></script> -->
     <script src="./main.js"></script>
     <script src="./graphs.js"></script>
+    <script>
+        setInterval(()=>{
+        $.ajax({
+            type: "POST",
+            url: "php/getDatatable.php",
+            success: function(data) {
+                $('#myDatatable').empty().append(data);
+            }
+        });
+    },1000)
+    
+    </script>
 </body>
 
 </html>
