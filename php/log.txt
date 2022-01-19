@@ -1,0 +1,1 @@
+Dosya emirhan tarafından değiştirildi (2022/01/19 / 08:57:40pm) Hasta ateş limit: (32, 38) , Nabız limit: (40, 120) // Oda sıcaklığı limit (15, 48)   

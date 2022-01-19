@@ -26,6 +26,10 @@ if(isset($_POST["patientTemp"]) && isset($_POST["pulse"])&& isset($_POST["roomTe
             $data["title"]="success";        
             $data["message"]="Kayıt oluşturuldu.";
             echo json_encode($data);  
+            $myfile = fopen("log.txt", "a") or die("Unable to open file!");
+            $txt = "Dosya ".$_SESSION['username']." tarafından değiştirildi (".date("Y/m/d")." / ".date("h:i:sa").") Hasta ateş limit: ($patientTempLimit[0],$patientTempLimit[1]) , Nabız limit: ($pulseTempLimit[0],$pulseTempLimit[1]) // Oda sıcaklığı limit ($roomTempLimit[0],$roomTempLimit[1])   \n";
+            fwrite($myfile, $txt);
+            fclose($myfile);
         }
         else{
         $data["status"]="error";        
