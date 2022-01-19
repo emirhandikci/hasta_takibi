@@ -83,6 +83,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="./main.js"></script>
+        <script src="https://unpkg.com/scrollreveal"></script>
     <script src="./graphs.js"></script>
 </body>
 
