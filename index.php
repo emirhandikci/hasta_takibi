@@ -25,9 +25,6 @@ session_start();
     </form>
 
 
-    <!-- SCROLL REVEAL -->
-    <script src="https://unpkg.com/scrollreveal"></script>
-
     <!-- JAVASCRİPT -->
     <script>
     var form = $('#loginForm');
