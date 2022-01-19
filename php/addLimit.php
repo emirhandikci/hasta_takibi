@@ -30,7 +30,7 @@ if(isset($_POST["patientTemp"]) && isset($_POST["pulse"])&& isset($_POST["roomTe
         else{
         $data["status"]="error";        
         $data["title"]="error";        
-        $data["message"]="Ekleme yapılırke sorun oluştu.";
+        $data["message"]="Ekleme yapılırken sorun oluştu.";
         echo json_encode($data);  
         }
     
